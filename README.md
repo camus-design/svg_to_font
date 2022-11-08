@@ -1,2 +1,11 @@
-A sample command-line application with an entrypoint in `bin/`, library code
-in `lib/`, and example unit test in `test/`.
+# camus_iconfont
+
+## Useage
+
+```shell
+dart ./bin/camus_iconfont.dart  camus_iconfont  --input=assets --font-output=./ --icons-output=./
+```
+
+## TODO
+
+- [x]  write family to yaml file
