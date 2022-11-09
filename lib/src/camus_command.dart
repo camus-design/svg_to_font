@@ -15,7 +15,7 @@ const String _fontOutputDir = 'font-output';
 const String _iconsClassName = 'name';
 const String _defaultIconsClassName = 'CamusIcons';
 const String _iconsOutputDir = 'icons-output';
-const String _preview = 'preview';
+// const String _preview = 'preview';
 
 const String _tempDir = 'temp';
 const String _tempNodeDir = '$_tempDir/node';
@@ -40,11 +40,11 @@ class CamusCommand extends Command {
       defaultsTo: _defaultIconsClassName,
       help: 'Flutter icons class Name',
     );
-    argParser.addFlag(
-      _preview,
-      defaultsTo: true,
-      help: 'Preview Flutter Icons',
-    );
+    // argParser.addFlag(
+    //   _preview,
+    //   defaultsTo: false,
+    //   help: 'Preview Flutter Icons',
+    // );
   }
 
   @override
@@ -186,11 +186,12 @@ class CamusCommand extends Command {
           classBuilder.fields.add(
             Field(
               (FieldBuilder fieldBuild) {
-                if (argResults![_preview]) {
-                  final itemSvgPath =
-                      path.join(argResults![_svgInputDir], '$key.svg');
-                  fieldBuild.docs.add('/// ![]($itemSvgPath)');
-                }
+                // todo: preview base64
+                // if (argResults![_preview]) {
+                //   final itemSvgPath =
+                //       path.join(argResults![_svgInputDir], '$key.svg');
+                //   fieldBuild.docs.add('/// ![]($itemSvgPath)');
+                // }
                 fieldBuild.name = key;
                 fieldBuild.type = refer('IconData');
                 fieldBuild.modifier = FieldModifier.final$;
@@ -255,13 +256,13 @@ const String fontFamily = '$className';
     final tempDir = Directory(path.join(rootDirector.path, _tempDir));
     tempDir.delete(recursive: true);
     // if _preview is false, delete input svg
-    if (!argResults![_preview]) {
-      final soureFileDir =
-          Directory(path.join(rootDirector.path, argResults![_svgInputDir]));
-      if (soureFileDir.existsSync()) {
-        await soureFileDir.delete();
-      }
-    }
+    // if (!argResults![_preview]) {
+    //   final soureFileDir =
+    //       Directory(path.join(rootDirector.path, argResults![_svgInputDir]));
+    //   if (soureFileDir.existsSync()) {
+    //     await soureFileDir.delete();
+    //   }
+    // }
 
     stdout.writeln('\x1b[34m ✅ 🎉🎉🎉 Wow！It is amazing！🎉🎉🎉');
   }

@@ -1,11 +1,29 @@
 # camus_iconfont
 
-## Useage
+## Table of Contents
+
+## Background
+
+## Get Started
+
+### Install
+
+Works in you projects
 
 ```shell
-dart ./bin/camus_iconfont.dart  camus_iconfont  --input=assets --font-output=./ --icons-output=./
+dart pub add camus_iconfont --dev
 ```
 
-## TODO
+Pub Global
 
-- [x]  write family to yaml file
+```shell
+dart pub global activate camus_iconfont
+```
+
+### Usage/Run
+
+## Example
+
+## License
+
+[MIT](LICENSE) © Camus Design
