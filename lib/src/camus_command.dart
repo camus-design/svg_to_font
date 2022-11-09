@@ -15,6 +15,7 @@ const String _fontOutputDir = 'font-output';
 const String _iconsClassName = 'name';
 const String _defaultIconsClassName = 'CamusIcons';
 const String _iconsOutputDir = 'icons-output';
+const String _deleteInput = 'delete-input';
 // const String _preview = 'preview';
 
 const String _tempDir = 'temp';
@@ -40,10 +41,15 @@ class CamusCommand extends Command {
       defaultsTo: _defaultIconsClassName,
       help: 'Flutter icons class Name',
     );
+    argParser.addFlag(
+      _deleteInput,
+      defaultsTo: false,
+      help: 'Is delete your input svg',
+    );
     // argParser.addFlag(
     //   _preview,
     //   defaultsTo: false,
-    //   help: 'Preview Flutter Icons',
+    //   help: 'Is Preview Flutter Icons',
     // );
   }
 
@@ -255,14 +261,14 @@ const String fontFamily = '$className';
 
     final tempDir = Directory(path.join(rootDirector.path, _tempDir));
     tempDir.delete(recursive: true);
-    // if _preview is false, delete input svg
-    // if (!argResults![_preview]) {
-    //   final soureFileDir =
-    //       Directory(path.join(rootDirector.path, argResults![_svgInputDir]));
-    //   if (soureFileDir.existsSync()) {
-    //     await soureFileDir.delete();
-    //   }
-    // }
+    // if _deleteInput is false, delete input svg
+    if (argResults![_deleteInput]) {
+      final soureFileDir =
+          Directory(path.join(rootDirector.path, argResults![_svgInputDir]));
+      if (soureFileDir.existsSync()) {
+        await soureFileDir.delete();
+      }
+    }
 
     stdout.writeln('\x1b[34m ✅ 🎉🎉🎉 Wow！It is amazing！🎉🎉🎉');
   }
