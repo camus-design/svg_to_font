@@ -16,7 +16,7 @@ const String _iconsClassName = 'name';
 const String _defaultIconsClassName = 'CamusIcons';
 const String _iconsOutputDir = 'icons-output';
 const String _deleteInput = 'delete-input';
-// const String _preview = 'preview';
+const String _preview = 'preview';
 
 const String _tempDir = 'temp';
 const String _tempNodeDir = '$_tempDir/node';
@@ -46,11 +46,11 @@ class CamusCommand extends Command {
       defaultsTo: false,
       help: 'Is delete your input svg',
     );
-    // argParser.addFlag(
-    //   _preview,
-    //   defaultsTo: false,
-    //   help: 'Is Preview Flutter Icons',
-    // );
+    argParser.addFlag(
+      _preview,
+      defaultsTo: true,
+      help: 'Is Preview Flutter Icons',
+    );
   }
 
   @override
@@ -193,11 +193,12 @@ class CamusCommand extends Command {
             Field(
               (FieldBuilder fieldBuild) {
                 // todo: preview base64
-                // if (argResults![_preview]) {
-                //   final itemSvgPath =
-                //       path.join(argResults![_svgInputDir], '$key.svg');
-                //   fieldBuild.docs.add('/// ![]($itemSvgPath)');
-                // }
+                if (argResults![_preview]) {
+                  final itemSvgPath =
+                      path.join(argResults![_svgInputDir], '$key.svg');
+                  fieldBuild.docs
+                      .add('/// ![](${itemSvgPath.replaceAll(r'\', r'/')})');
+                }
                 fieldBuild.name = key;
                 fieldBuild.type = refer('IconData');
                 fieldBuild.modifier = FieldModifier.final$;
@@ -213,13 +214,23 @@ class CamusCommand extends Command {
     );
 
     final DartEmitter emitter = DartEmitter();
-    String result = """
+    String header = '''/// GENERATED CODE - DO NOT MODIFY BY HAND
+/// *****************************************************
+///  Camus Iconfont
+/// *****************************************************
+
+''';
+
+    String import = """
 import 'package:flutter/material.dart';
 
 const String fontFamily = '$className';
 
     """;
-    result += DartFormatter().format('${bbIcons.accept(emitter)}');
+    final String emitterResult =
+        DartFormatter().format('${bbIcons.accept(emitter)}');
+    final formatter = DartFormatter();
+    final String result = formatter.format(header + import + emitterResult);
     final String filePath = path.join(
       rootDirector.path,
       _tempOutputDir,
