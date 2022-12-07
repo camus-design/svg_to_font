@@ -8,7 +8,7 @@
   - [Requirements](#requirements)
   - [Get Started](#get-started)
     - [Install](#install)
-    - [Usage/Run](#usagerun)
+  - [Params](#params)
   - [Example](#example)
   - [License](#license)
 
@@ -42,16 +42,25 @@ Pub Global
 dart pub global activate camus_iconfont
 ```
 
-### Usage/Run
-
 ---
+
+## Params
+
+|  parameter   | description | default |
+|  :----:  | :----:  | :----:  |
+ --help   | Print this usage information  | -- |
+ --input  | Input your svg file path | -- |
+ --font-output   | Output your fonts dir path | -- |
+ --icons-output    | Flutter icons output dir | -- |
+ --name    | Flutter icons class Name | CamusIcons |
+ --delete-input  | Is delete your input svg, if false, can preview svg | false  |
 
 ## Example
 
 Run command
 
 ```shell
-dart pub global run camus_iconfont camus_iconfont   --input=./example/assets --font-output=./example/assets --icons-output=./example/lib
+camus_iconfont camus_iconfont  --input=./example/assets --font-output=./example/assets --icons-output=./example/lib
 ```
 
 Generate camus_icons.dart
