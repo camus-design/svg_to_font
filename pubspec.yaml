@@ -16,3 +16,5 @@ dependencies:
   dart_style: ^2.2.3
   path: ^1.8.0
   recase: ^4.1.0
+executables:
+  camus_iconfont: camus_iconfont

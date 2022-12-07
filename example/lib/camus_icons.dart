@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 const String fontFamily = 'CamusIcons';
 
 class CamusIcons {
-  /// ![](./example/assets/test.svg)
+  /// File path: ./example/assets/test.svg
   static const IconData test = IconData(0xf101, fontFamily: fontFamily);
 
   CamusIcons._();

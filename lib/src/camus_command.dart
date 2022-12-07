@@ -16,7 +16,6 @@ const String _iconsClassName = 'name';
 const String _defaultIconsClassName = 'CamusIcons';
 const String _iconsOutputDir = 'icons-output';
 const String _deleteInput = 'delete-input';
-const String _preview = 'preview';
 
 const String _tempDir = 'temp';
 const String _tempNodeDir = '$_tempDir/node';
@@ -44,12 +43,7 @@ class CamusCommand extends Command {
     argParser.addFlag(
       _deleteInput,
       defaultsTo: false,
-      help: 'Is delete your input svg',
-    );
-    argParser.addFlag(
-      _preview,
-      defaultsTo: true,
-      help: 'Is Preview Flutter Icons',
+      help: 'Is delete your input svg, if false, can preview svg ',
     );
   }
 
@@ -192,12 +186,11 @@ class CamusCommand extends Command {
           classBuilder.fields.add(
             Field(
               (FieldBuilder fieldBuild) {
-                // todo: preview base64
-                if (argResults![_preview]) {
+                if (!argResults![_deleteInput]) {
                   final itemSvgPath =
                       path.join(argResults![_svgInputDir], '$key.svg');
-                  fieldBuild.docs
-                      .add('/// ![](${itemSvgPath.replaceAll(r'\', r'/')})');
+                  fieldBuild.docs.add(
+                      '/// File path: ${itemSvgPath.replaceAll(r'\', r'/')}');
                 }
                 fieldBuild.name = key;
                 fieldBuild.type = refer('IconData');
