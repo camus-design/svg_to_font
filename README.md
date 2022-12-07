@@ -1,81 +1,45 @@
-# camus_iconfont
+# Camus Iconfont
 
 ## Table of Contents
 
-- [camus\_iconfont](#camus_iconfont)
+- [Camus Iconfont](#camus-iconfont)
   - [Table of Contents](#table-of-contents)
   - [Background](#background)
   - [Requirements](#requirements)
   - [Get Started](#get-started)
     - [Install](#install)
-  - [Params](#params)
-  - [Example](#example)
+    - [An Example](#an-example)
+    - [Params](#params)
   - [License](#license)
 
 ## Background
 
-In order to facilitate developers to quickly generate iconfont fonts((.ttf)) and Flutter iconClass, we have developed the camus_iconfont library.
+To facilitate developers to quickly generate icon font (.ttf) and Flutter icon class, We developed the camus_iconfont library. Then you can use icons like the font.
 
 ## Requirements
 
-Node.JS V10+
+Node.JS V10+ . [Install Node](https://nodejs.org/en/download/)
 
 ## Get Started
 
 ### Install
 
-Works in you projects
-
-```shell
-dart pub add camus_iconfont --dev
-```
-
-Pub Global
-
 ```shell
 dart pub global activate camus_iconfont
 ```
 
-## Params
+### An Example
 
-|  parameter   | description | default |
-|  :----:  | :----:  | :----:  |
- --help   | Print this usage information  | -- |
- --input  | Input your svg file path | -- |
- --font-output   | Output your fonts dir path | -- |
- --icons-output    | Flutter icons output dir | -- |
- --name    | Flutter icons class Name | CamusIcons |
- --delete-input  | Is delete your input svg, if false, can preview svg | false  |
-
-## Example
-
-Run command
+1. Put all of your icon SVG into some folder(example/assets);
+2.
 
 ```shell
-camus_iconfont camus_iconfont  --input=./example/assets --font-output=./example/assets --icons-output=./example/lib
+camus_iconfont camus_iconfont  --input=./example/assets --font-output=./example/assets/fonts --class-output=./example/lib
 ```
 
-Generate camus_icons.dart
+Generated `camus_icons.dart` in `example/lib` and `camus_icons.ttf` in `example/assets`
 
-```dart
-/// GENERATED CODE - DO NOT MODIFY BY HAND
-/// *****************************************************
-///  Camus Iconfont
-/// *****************************************************
-
-import 'package:flutter/material.dart';
-
-const String fontFamily = 'CamusIcons';
-
-class CamusIcons {
-  /// File path: ./example/assets/test.svg
-  static const IconData test = IconData(0xf101, fontFamily: fontFamily);
-
-  CamusIcons._();
-}
-```
-
-You should also add some code to pubspec.yaml
+3. Add some code to `pubspec.yaml`
 
 ```yaml
   fonts:
@@ -83,6 +47,17 @@ You should also add some code to pubspec.yaml
       fonts:
         - asset: assets/fonts/camus_icons.ttf
 ```
+
+### Params
+
+|  parameter   | description | default |
+|  :----:  | :----:  | :----:  |
+ --help   | Print this usage information  | -- |
+ --input  | Input your svg file path | -- |
+ --font-output   | Output your fonts dir path | -- |
+ --class-output    | Flutter icons Class output dir | -- |
+ --name    | Flutter icons class Name | CamusIcons |
+ --delete-input  | Is delete your input svg, if false, can preview svg | false  |
 
 ## License
 
