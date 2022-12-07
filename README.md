@@ -12,19 +12,13 @@
   - [Example](#example)
   - [License](#license)
 
----
-
 ## Background
 
 In order to facilitate developers to quickly generate iconfont fonts((.ttf)) and Flutter iconClass, we have developed the camus_iconfont library.
 
----
-
 ## Requirements
 
 Node.JS V10+
-
----
 
 ## Get Started
 
@@ -41,8 +35,6 @@ Pub Global
 ```shell
 dart pub global activate camus_iconfont
 ```
-
----
 
 ## Params
 
