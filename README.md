@@ -34,7 +34,7 @@ dart pub global activate camus_iconfont
 2.
 
 ```shell
-camus_iconfont camus_iconfont  --input=./example/assets --font-output=./example/assets/fonts --class-output=./example/lib
+camus_iconfont camus  --input=./example/assets --font-output=./example/assets/fonts --class-output=./example/lib
 ```
 
 Generated `camus_icons.dart` in `example/lib` and `camus_icons.ttf` in `example/assets`

@@ -51,7 +51,7 @@ class CamusCommand extends Command {
   String get description => 'generate your font files & Flutter Icons';
 
   @override
-  String get name => 'camus_iconfont';
+  String get name => 'generate';
 
   void _handleArguments() {
     if (argResults![_svgInputDir] == null) {
