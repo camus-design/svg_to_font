@@ -71,8 +71,11 @@ class CamusCommand extends Command<void> {
   }
 
   Future<void> _judegeNodeEnvironment() async {
-    final ProcessResult result =
-        await Process.run('node', ['--version'], runInShell: true);
+    final ProcessResult result = await Process.run(
+      'node',
+      <String>['--version'],
+      runInShell: true,
+    );
 
     if (result.exitCode != 0) {
       stderr.writeln(
@@ -113,7 +116,6 @@ class CamusCommand extends Command<void> {
     final Directory outputDir =
         Directory(path.join(rootDirector.path, _tempOutputDir));
 
-    // todo (YH): 不要删除
     if (outputDir.existsSync()) {
       await outputDir.delete(recursive: true);
     }
@@ -193,7 +195,8 @@ class CamusCommand extends Command<void> {
                   final String itemSvgPath =
                       path.join(argResults![_svgInputDir], '$key.svg');
                   fieldBuild.docs.add(
-                      '/// File path: ${itemSvgPath.replaceAll(r'\', r'/')}');
+                    '/// File path: ${itemSvgPath.replaceAll(r'\', r'/')}',
+                  );
                 }
                 fieldBuild.name = key;
                 fieldBuild.type = refer('IconData');
@@ -209,11 +212,11 @@ class CamusCommand extends Command<void> {
       },
     );
 
-    final DartEmitter emitter = DartEmitter();
-
     const String ignore = '''
 // ignore_for_file: sort_constructors_first, public_member_api_docs
 ''';
+
+    final DartEmitter emitter = DartEmitter();
     const String header = '''/// GENERATED CODE - DO NOT MODIFY BY HAND
 /// *****************************************************
 ///  Camus Iconfont
@@ -247,8 +250,6 @@ const String fontFamily = '$className';
   Future<void> _copyFile() async {
     final String className =
         argResults![_iconsClassName] ?? _defaultIconsClassName;
-
-    /// 处理目录不存在情况
     final String iconClassFilePath = path.join(
       path.current,
       argResults![_iconsOutputDir],
@@ -260,15 +261,6 @@ const String fontFamily = '$className';
       _tempOutputDir,
       '${className.snakeCase}.dart',
     );
-
-    final Directory outputDir =
-        Directory(path.join(rootDirector.path, _tempOutputDir));
-
-    if (outputDir.existsSync()) {
-      await outputDir.delete(recursive: true);
-    }
-    await outputDir.create(recursive: true);
-    /////
 
     final String fontFile = path.join(
       path.current,
