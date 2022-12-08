@@ -5,7 +5,8 @@ import 'package:camus_iconfont/camus_iconfont.dart';
 
 void main(List<String> arguments) {
   try {
-    CommandRunner('camus_iconfont', 'generate your font files & Flutter Icons')
+    CommandRunner<dynamic>(
+        'camus_iconfont', 'generate your font files & Flutter Icons')
       ..addCommand(CamusCommand())
       ..run(arguments);
   } catch (e) {

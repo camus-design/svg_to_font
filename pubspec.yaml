@@ -8,7 +8,7 @@ environment:
 
 
 dev_dependencies:
-  lints: ^2.0.1
+  camus_lints: ^1.1.1
   test: ^1.16.0
 dependencies:
   args: ^2.3.1
@@ -18,4 +18,4 @@ dependencies:
   recase: ^4.1.0
 
 executables:
-  camus_iconfont: camus_iconfont
+  camus_iconfont: main

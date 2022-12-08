@@ -14,14 +14,14 @@ const String _svgInputDir = 'input';
 const String _fontOutputDir = 'font-output';
 const String _iconsClassName = 'name';
 const String _defaultIconsClassName = 'CamusIcons';
-const String _iconsOutputDir = 'icons-output';
+const String _iconsOutputDir = 'class-output';
 const String _deleteInput = 'delete-input';
 
 const String _tempDir = 'temp';
 const String _tempNodeDir = '$_tempDir/node';
 const String _tempOutputDir = '$_tempDir/out';
 
-class CamusCommand extends Command {
+class CamusCommand extends Command<void> {
   CamusCommand() {
     argParser.addOption(
       _svgInputDir,
@@ -88,44 +88,45 @@ class CamusCommand extends Command {
 
   /// generate node package.json && excute npm install
   Future<void> _generatePackageJson() async {
-    final nodeDirPath = path.join(rootDirector.path, _tempNodeDir);
-    final dir = Directory(nodeDirPath);
+    final String nodeDirPath = path.join(rootDirector.path, _tempNodeDir);
+    final Directory dir = Directory(nodeDirPath);
     if (!dir.existsSync()) {
       await dir.create(recursive: true);
     }
-    final packageJsonFile = File(path.join(nodeDirPath, 'package.json'));
+    final File packageJsonFile = File(path.join(nodeDirPath, 'package.json'));
     if (!packageJsonFile.existsSync()) {
       await packageJsonFile.writeAsString(packageJsonTemplate);
     }
 
     stdout.writeln('\x1b[32m Installing npm dependencies ...');
 
-    final npmInstallResult = await Process.start(
+    final Process npmInstallResult = await Process.start(
       'npm',
-      ['install'],
+      <String>['install'],
       workingDirectory: dir.path,
       runInShell: true,
     );
     await stdout.addStream(npmInstallResult.stdout);
-    print('root, $rootDirector');
   }
 
   Future<void> _generateIconfont() async {
-    final outputDir = Directory(path.join(rootDirector.path, _tempOutputDir));
+    final Directory outputDir =
+        Directory(path.join(rootDirector.path, _tempOutputDir));
 
+    // todo (YH): 不要删除
     if (outputDir.existsSync()) {
       await outputDir.delete(recursive: true);
     }
     await outputDir.create(recursive: true);
 
     try {
-      final result = await Process.start(
+      final Process result = await Process.start(
         path.join(
           rootDirector.path,
           _tempNodeDir,
           'node_modules/.bin/fantasticon',
         ),
-        [
+        <String>[
           path.join(path.current, argResults![_svgInputDir]),
           '--name',
           argResults![_iconsClassName] ?? _defaultIconsClassName,
@@ -141,10 +142,12 @@ class CamusCommand extends Command {
 
       final int code = await result.exitCode;
       if (code != 0) {
-        await stdout.addStream(result.stdout.map((bytes) {
-          var message = utf8.decode(bytes);
-          return utf8.encode(message);
-        }));
+        await stdout.addStream(
+          result.stdout.map((List<int> bytes) {
+            final String message = utf8.decode(bytes);
+            return utf8.encode(message);
+          }),
+        );
         stderr.writeln(
           '\x1b[31m ❌ Error: generate iconfont is Failed! ❌',
         );
@@ -187,7 +190,7 @@ class CamusCommand extends Command {
             Field(
               (FieldBuilder fieldBuild) {
                 if (!argResults![_deleteInput]) {
-                  final itemSvgPath =
+                  final String itemSvgPath =
                       path.join(argResults![_svgInputDir], '$key.svg');
                   fieldBuild.docs.add(
                       '/// File path: ${itemSvgPath.replaceAll(r'\', r'/')}');
@@ -207,14 +210,18 @@ class CamusCommand extends Command {
     );
 
     final DartEmitter emitter = DartEmitter();
-    String header = '''/// GENERATED CODE - DO NOT MODIFY BY HAND
+
+    const String ignore = '''
+// ignore_for_file: sort_constructors_first, public_member_api_docs
+''';
+    const String header = '''/// GENERATED CODE - DO NOT MODIFY BY HAND
 /// *****************************************************
 ///  Camus Iconfont
 /// *****************************************************
 
 ''';
 
-    String import = """
+    final String import = """
 import 'package:flutter/material.dart';
 
 const String fontFamily = '$className';
@@ -222,13 +229,16 @@ const String fontFamily = '$className';
     """;
     final String emitterResult =
         DartFormatter().format('${bbIcons.accept(emitter)}');
-    final formatter = DartFormatter();
-    final String result = formatter.format(header + import + emitterResult);
+    final DartFormatter formatter = DartFormatter();
+    final String result =
+        formatter.format(ignore + header + import + emitterResult);
+
     final String filePath = path.join(
       rootDirector.path,
       _tempOutputDir,
       '${className.snakeCase}.dart',
     );
+
     final File flutterIconFile = File(filePath);
     flutterIconFile.writeAsStringSync(result);
   }
@@ -237,7 +247,9 @@ const String fontFamily = '$className';
   Future<void> _copyFile() async {
     final String className =
         argResults![_iconsClassName] ?? _defaultIconsClassName;
-    final iconClassFilePath = path.join(
+
+    /// 处理目录不存在情况
+    final String iconClassFilePath = path.join(
       path.current,
       argResults![_iconsOutputDir],
       '${className.snakeCase}.dart',
@@ -249,7 +261,16 @@ const String fontFamily = '$className';
       '${className.snakeCase}.dart',
     );
 
-    final fontFile = path.join(
+    final Directory outputDir =
+        Directory(path.join(rootDirector.path, _tempOutputDir));
+
+    if (outputDir.existsSync()) {
+      await outputDir.delete(recursive: true);
+    }
+    await outputDir.create(recursive: true);
+    /////
+
+    final String fontFile = path.join(
       path.current,
       argResults![_fontOutputDir],
       '${className.snakeCase}.ttf',
@@ -263,11 +284,11 @@ const String fontFamily = '$className';
     await File(path.join(tempFlutterClassPath)).copy(iconClassFilePath);
     await File(path.join(tempIconFontPath)).copy(fontFile);
 
-    final tempDir = Directory(path.join(rootDirector.path, _tempDir));
+    final Directory tempDir = Directory(path.join(rootDirector.path, _tempDir));
     tempDir.delete(recursive: true);
     // if _deleteInput is false, delete input svg
     if (argResults![_deleteInput]) {
-      final soureFileDir =
+      final Directory soureFileDir =
           Directory(path.join(rootDirector.path, argResults![_svgInputDir]));
       if (soureFileDir.existsSync()) {
         await soureFileDir.delete();

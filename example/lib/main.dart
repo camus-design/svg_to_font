@@ -1,5 +1,6 @@
-import 'package:example/camus_icons.dart';
 import 'package:flutter/material.dart';
+
+import './camus_icons.dart';
 
 void main() {
   runApp(const MyApp());
