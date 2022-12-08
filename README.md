@@ -33,22 +33,20 @@ dart pub global activate camus_iconfont
 ### An Example
 
 1. Put all of your icon SVG into some folder(example/assets);
-2.
+2. Generated `camus_icons.dart` in `example/lib` and `camus_icons.ttf` in `example/assets`
 
-```shell
-camus_iconfont generate  --input=./example/assets --font-output=./example/assets/fonts --class-output=./example/lib
-```
-
-Generated `camus_icons.dart` in `example/lib` and `camus_icons.ttf` in `example/assets`
+    ```shell
+    camus_iconfont generate  --input=./example/assets --font-output=./example/assets/fonts --class-output=./example/lib
+    ```
 
 3. Add some code to `pubspec.yaml`
 
-```yaml
-  fonts:
-    - family: CamusIcons
-      fonts:
-        - asset: assets/fonts/camus_icons.ttf
-```
+  ```yaml
+    fonts:
+      - family: CamusIcons
+        fonts:
+          - asset: assets/fonts/camus_icons.ttf
+  ```
 
 ### Params
 

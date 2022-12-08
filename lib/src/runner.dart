@@ -21,7 +21,9 @@ const String _tempDir = 'temp';
 const String _tempNodeDir = '$_tempDir/node';
 const String _tempOutputDir = '$_tempDir/out';
 
+/// generate icon font (.ttf) and Flutter icon class
 class CamusCommand extends Command<void> {
+  /// Defines  arguments
   CamusCommand() {
     argParser.addOption(
       _svgInputDir,
