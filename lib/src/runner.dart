@@ -250,6 +250,18 @@ const String fontFamily = '$className';
   Future<void> _copyFile() async {
     final String className =
         argResults![_iconsClassName] ?? _defaultIconsClassName;
+
+    /// Create if the _iconsClassName folder does not exist
+    final Directory classFileDir = Directory(
+      path.join(
+        path.current,
+        argResults![_iconsOutputDir],
+      ),
+    );
+    if (!classFileDir.existsSync()) {
+      await classFileDir.create(recursive: true);
+    }
+
     final String iconClassFilePath = path.join(
       path.current,
       argResults![_iconsOutputDir],
@@ -261,6 +273,17 @@ const String fontFamily = '$className';
       _tempOutputDir,
       '${className.snakeCase}.dart',
     );
+
+    /// Create if the _fontOutputDir folder does not exist
+    final Directory fontFileDir = Directory(
+      path.join(
+        path.current,
+        argResults![_fontOutputDir],
+      ),
+    );
+    if (!fontFileDir.existsSync()) {
+      await fontFileDir.create(recursive: true);
+    }
 
     final String fontFile = path.join(
       path.current,
