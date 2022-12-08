@@ -1,5 +1,7 @@
 # Camus Iconfont
 
+A tool for converting svg to font files.
+
 ## Table of Contents
 
 - [Camus Iconfont](#camus-iconfont)
