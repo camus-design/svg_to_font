@@ -1,3 +1,4 @@
+/// node package.json template
 const String packageJsonTemplate = '''
 {
   "name": "camus_iconfont",

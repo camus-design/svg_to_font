@@ -6,11 +6,13 @@ import 'package:camus_iconfont/camus_iconfont.dart';
 void main(List<String> arguments) {
   try {
     CommandRunner<dynamic>(
-        'camus_iconfont', 'generate your font files & Flutter Icons')
+      'camus_iconfont',
+      'generate your font files & Flutter Icons',
+    )
       ..addCommand(CamusCommand())
       ..run(arguments);
   } catch (e) {
-    print(e);
+    stderr.writeln('\x1b[31m ❌ $e ❌');
     exit(1);
   }
 }

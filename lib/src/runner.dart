@@ -185,8 +185,10 @@ class CamusCommand extends Command<void> {
         final ClassBuilder classBuilder = builder;
         classBuilder.name = className;
         classBuilder.methods.add(
-          Method((MethodBuilder constructorBuilder) =>
-              constructorBuilder..name = '$className._'),
+          Method(
+            (MethodBuilder constructorBuilder) =>
+                constructorBuilder..name = '$className._',
+          ),
         );
         for (final String key in icons.keys) {
           final String codePoint = '0x${icons[key].toRadixString(16)}';
