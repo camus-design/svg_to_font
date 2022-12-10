@@ -6,7 +6,7 @@ import 'package:args/command_runner.dart';
 import 'package:io/io.dart';
 
 import './commands/camus_command.dart';
-import 'exception.dart';
+import './exception.dart';
 
 /// Commander Runner for Camus Iconfont
 class CamusCommandRunner extends CommandRunner<int> {
