@@ -1,5 +1,5 @@
 name: camus_iconfont
-description: generate your font files & Flutter Icons
+description: A tool for converting svg to font files.
 version: 1.0.0
 repository: https://github.com/camus-design/camus_iconfont.git
 
