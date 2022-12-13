@@ -16,7 +16,9 @@ A tool for converting svg to font files.
 
 ## Background
 
-To facilitate developers to quickly generate icon font (.ttf) and Flutter icon class, We developed the camus_iconfont library. Then you can use icons like the font.
+To facilitate developers to quickly generate icon font (.ttf) and Flutter icon class, We developed the camus_iconfont library.
+
+Then you can use icons like the font.
 
 ## Requirements
 
