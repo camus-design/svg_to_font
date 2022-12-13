@@ -11,7 +11,7 @@ A tool for converting svg to font files.
   - [Get Started](#get-started)
     - [Install](#install)
     - [An Example](#an-example)
-    - [Params](#params)
+  - [Params](#params)
   - [License](#license)
 
 ## Background
@@ -50,7 +50,7 @@ dart pub global activate camus_iconfont
           - asset: assets/fonts/camus_icons.ttf
   ```
 
-### Params
+## Params
 
 |  parameter   | description | default |
 |  :----:  | :----:  | :----:  |
