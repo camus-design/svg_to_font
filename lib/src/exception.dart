@@ -7,7 +7,7 @@ class CamusIconfontUsageException implements Exception {
   final String message;
 
   @override
-  String toString() => 'CamusIconfont usage Exception: $message';
+  String toString() => 'SVG to Font usage Exception: $message';
 }
 
 /// Exception for internal Camus Iconfont
@@ -19,5 +19,5 @@ class CamusIconfontException implements Exception {
   final String message;
 
   @override
-  String toString() => 'CamusIconfont Exception: $message';
+  String toString() => 'SVG to Font Exception: $message';
 }
