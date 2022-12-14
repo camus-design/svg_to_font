@@ -1,7 +1,7 @@
 /// node package.json template
 const String packageJsonTemplate = '''
 {
-  "name": "camus_iconfont",
+  "name": "svg_to_font",
   "version": "1.0.0",
   "license": "MIT",
   "dependencies": {

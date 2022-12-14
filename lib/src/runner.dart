@@ -13,7 +13,7 @@ class CamusCommandRunner extends CommandRunner<int> {
   /// constructor
   CamusCommandRunner()
       : super(
-          'camus_iconfont',
+          'svg_to_font',
           'generate your font files & Flutter Icons',
         ) {
     addCommand(CamusCommand());

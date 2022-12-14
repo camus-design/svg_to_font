@@ -1,7 +1,7 @@
-name: camus_iconfont
-description: A tool for converting svg to font files.
+name: svg_to_font
+description: A tool for converting svg files to a font.
 version: 1.0.0
-repository: https://github.com/camus-design/camus_iconfont.git
+repository: https://github.com/camus-design/svg_to_font.git
 
 environment:
   sdk: '>=2.16.1 <3.0.0'
@@ -19,4 +19,4 @@ dependencies:
   recase: ^4.1.0
 
 executables:
-  camus_iconfont: main
+  svg_to_font: main

@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:camus_iconfont/camus_iconfont.dart';
+import 'package:svg_to_font/svg_to_font.dart';
 
 void main(List<String> arguments) async {
   exit(await CamusCommandRunner().run(arguments));

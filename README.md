@@ -1,10 +1,10 @@
-# Camus Iconfont
+# Camus SvgToFont
 
 A tool for converting svg to font files.
 
 ## Table of Contents
 
-- [Camus Iconfont](#camus-iconfont)
+- [Camus SvgToFont](#camus-svgtofont)
   - [Table of Contents](#table-of-contents)
   - [Background](#background)
   - [Requirements](#requirements)
@@ -16,7 +16,7 @@ A tool for converting svg to font files.
 
 ## Background
 
-To facilitate developers to quickly generate icon font (.ttf) and Flutter icon class, We developed the camus_iconfont library.
+To facilitate developers to quickly generate icon font (.ttf) and Flutter icon class, We developed the svg_to_font library.
 
 Then you can use icons like the font.
 
@@ -29,7 +29,7 @@ Node.JS V10+ . [Install Node](https://nodejs.org/en/download/)
 ### Install
 
 ```shell
-dart pub global activate camus_iconfont
+dart pub global activate svg_to_font
 ```
 
 ### An Example
@@ -38,7 +38,7 @@ dart pub global activate camus_iconfont
 2. Generated `camus_icons.dart` in `example/lib` and `camus_icons.ttf` in `example/assets`
 
     ```shell
-    camus_iconfont generate  --input=./example/assets --font-output=./example/assets/fonts --class-output=./example/lib
+    svg_to_font generate  --input=./example/assets --font-output=./example/assets/fonts --class-output=./example/lib
     ```
 
 3. Add some code to `pubspec.yaml`

@@ -1,8 +1,8 @@
 @Timeout(Duration(minutes: 5))
 import 'dart:io';
 
-import 'package:camus_iconfont/camus_iconfont.dart';
 import 'package:io/io.dart';
+import 'package:svg_to_font/svg_to_font.dart';
 import 'package:test/test.dart';
 
 const String testDirPath = './example/camus_test';
@@ -10,7 +10,7 @@ const String testFontDirPath = '$testDirPath/assets/font';
 const String testClassDirPath = '$testDirPath/class';
 
 void main() {
-  group('Camus Iconfont generate', () {
+  group('Camus Icon font generate', () {
     final Directory testDir = Directory(testDirPath);
     final bool isExists = testDir.existsSync();
     tearDownAll(() async {
