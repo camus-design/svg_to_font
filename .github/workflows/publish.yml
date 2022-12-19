@@ -10,15 +10,10 @@ jobs:
   publishing:
     runs-on: ubuntu-latest
     steps:
-      - name: 'Checkout'
         uses: actions/checkout@main # required!
-
-      - name: Use Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 12
-
-      - name: camus_lint
         uses: k-paxian/dart-package-publisher@master
         with:
           accessToken: ${{ secrets.PUB_ACCESS_TOKEN }}
