@@ -1,6 +1,6 @@
 name: svg_to_font
-description: A tool for converting svg files to a font.
-version: 1.0.1
+description: A tool for converting svg files to a font. To facilitate developers to quickly generate icon font (.ttf) and Flutter icon class, We developed the svg_to_font library.
+version: 1.0.2
 repository: https://github.com/camus-design/svg_to_font.git
 
 environment:
