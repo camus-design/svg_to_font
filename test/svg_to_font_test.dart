@@ -19,7 +19,7 @@ void main() {
       }
     });
     test('Generate icons', () async {
-      final int exitCode = await CamusCommandRunner().run(
+      final int exitCode = await SvgToFontCommandRunner().run(
         <String>[
           'generate',
           '--input',
@@ -36,7 +36,7 @@ void main() {
   });
 
   test('Do not pass input parameter', () async {
-    final int exitCode = await CamusCommandRunner().run(
+    final int exitCode = await SvgToFontCommandRunner().run(
       <String>[
         'generate',
         '--font-output',

@@ -1,6 +1,6 @@
 # example
 
-Camus Iconfont generate example project.
+SvgToFont generate example project.
 
 ## Getting Started
 

@@ -1,7 +1,7 @@
 /// Exception for internal Camus Iconfont usage
-class CamusIconfontUsageException implements Exception {
+class SvgToFontUsageException implements Exception {
   /// Constructor of usage exception
-  const CamusIconfontUsageException([this.message = '']);
+  const SvgToFontUsageException([this.message = '']);
 
   /// Message of the exception
   final String message;
@@ -11,9 +11,9 @@ class CamusIconfontUsageException implements Exception {
 }
 
 /// Exception for internal Camus Iconfont
-class CamusIconfontException implements Exception {
+class SvgToFontException implements Exception {
   /// Constructor of  exception
-  const CamusIconfontException([this.message = '']);
+  const SvgToFontException([this.message = '']);
 
   /// Message of the exception
   final String message;
