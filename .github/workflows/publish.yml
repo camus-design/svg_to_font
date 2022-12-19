@@ -10,12 +10,12 @@ jobs:
   publishing:
     runs-on: ubuntu-latest
     steps:
-        uses: actions/checkout@main # required!
-        uses: actions/setup-node@v3
-        with:
-          node-version: 12
-        uses: k-paxian/dart-package-publisher@master
-        with:
-          accessToken: ${{ secrets.PUB_ACCESS_TOKEN }}
-          refreshToken: ${{ secrets.PUB_REFRESH_TOKEN }}
-          skipTests: true
+      uses: actions/checkout@main # required!
+      uses: actions/setup-node@v3
+      with:
+        node-version: 12
+      uses: k-paxian/dart-package-publisher@master
+      with:
+        accessToken: ${{ secrets.PUB_ACCESS_TOKEN }}
+        refreshToken: ${{ secrets.PUB_REFRESH_TOKEN }}
+        skipTests: true
