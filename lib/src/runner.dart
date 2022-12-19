@@ -5,18 +5,18 @@ import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
 import 'package:io/io.dart';
 
-import './commands/camus_command.dart';
+import './commands/svg_to_font_command.dart';
 import './exception.dart';
 
 /// Commander Runner for Camus Iconfont
-class CamusCommandRunner extends CommandRunner<int> {
+class SvgToFontCommandRunner extends CommandRunner<int> {
   /// constructor
-  CamusCommandRunner()
+  SvgToFontCommandRunner()
       : super(
           'svg_to_font',
           'generate your font files & Flutter Icons',
         ) {
-    addCommand(CamusCommand());
+    addCommand(SvgToFontCommand());
   }
 
   @override
@@ -26,10 +26,10 @@ class CamusCommandRunner extends CommandRunner<int> {
       final int exitCode =
           await runCommand(argResults) ?? ExitCode.success.code;
       return exitCode;
-    } on CamusIconfontException catch (e) {
+    } on SvgToFontException catch (e) {
       stderr.writeln('\x1b[31m ❌ $e ❌');
       return ExitCode.usage.code;
-    } on CamusIconfontUsageException catch (e) {
+    } on SvgToFontUsageException catch (e) {
       stderr.writeln('\x1b[31m ❌ $e ❌');
       return ExitCode.usage.code;
     } on UsageException catch (e) {

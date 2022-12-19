@@ -13,10 +13,10 @@ import '../constants.dart';
 import '../exception.dart';
 import '../templates/package_json_template.dart';
 
-/// generate icon font (.ttf) and Flutter icon class
-class CamusCommand extends Command<int> {
-  /// Defines  arguments
-  CamusCommand() {
+/// Generate icon font (.ttf) and Flutter icon class
+class SvgToFontCommand extends Command<int> {
+  /// constructor
+  SvgToFontCommand() {
     argParser.addOption(
       svgInputDir,
       help: 'Input your svg file path',
@@ -49,25 +49,25 @@ class CamusCommand extends Command<int> {
 
   void _handleArguments() {
     if (argResults![svgInputDir] == null) {
-      throw const CamusIconfontUsageException(
+      throw const SvgToFontUsageException(
         'Svg files path not found',
       );
     }
 
     if (argResults![fontOutputDir] == null) {
-      throw const CamusIconfontUsageException(
+      throw const SvgToFontUsageException(
         'Output your fonts dir not found',
       );
     }
 
     if (argResults![iconsOutputDir] == null) {
-      throw const CamusIconfontUsageException(
+      throw const SvgToFontUsageException(
         'Flutter icons output dir not found',
       );
     }
   }
 
-  Future<void> _judegeNodeEnvironment() async {
+  Future<void> _judgeNodeEnvironment() async {
     final ProcessResult result = await Process.run(
       'node',
       <String>['--version'],
@@ -75,7 +75,7 @@ class CamusCommand extends Command<int> {
     );
 
     if (result.exitCode != 0) {
-      throw const CamusIconfontException(
+      throw const SvgToFontException(
         'Please install NodeJS. Recommended to install V10+, you can click https://nodejs.org/en/ intall it!',
       );
     }
@@ -85,7 +85,7 @@ class CamusCommand extends Command<int> {
   Directory get rootDirector =>
       Directory.fromUri(Platform.script.resolve('..'));
 
-  /// generate node package.json && excute npm install
+  /// generate node package.json && execute npm install
   Future<void> _generatePackageJson() async {
     final String nodeDirPath = path.join(rootDirector.path, tempNodeDir);
     final Directory dir = Directory(nodeDirPath);
@@ -147,12 +147,12 @@ class CamusCommand extends Command<int> {
           }),
         );
 
-        throw const CamusIconfontException(
+        throw const SvgToFontException(
           'generate iconfont is Failed!',
         );
       }
     } catch (e) {
-      throw const CamusIconfontException(
+      throw const SvgToFontException(
         'generate iconfont is Failed!',
       );
     }
@@ -216,7 +216,7 @@ class CamusCommand extends Command<int> {
     final DartEmitter emitter = DartEmitter();
     const String header = '''/// GENERATED CODE - DO NOT MODIFY BY HAND
 /// *****************************************************
-///  Camus Iconfont
+///  SvgToFont
 /// *****************************************************
 
 ''';
@@ -313,7 +313,7 @@ const String fontFamily = '$className';
   @override
   Future<int> run() async {
     _handleArguments();
-    await _judegeNodeEnvironment();
+    await _judgeNodeEnvironment();
     await _generatePackageJson();
     await _generateIconfont();
     await _generateFlutterFile();

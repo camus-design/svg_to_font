@@ -1,10 +1,10 @@
-# Camus SvgToFont
+# SvgToFont
 
 A tool for converting SVG files to font files.
 
 ## Table of Contents
 
-- [Camus SvgToFont](#camus-svgtofont)
+- [SvgToFont](#svgtofont)
   - [Table of Contents](#table-of-contents)
   - [Background](#background)
   - [Requirements](#requirements)
