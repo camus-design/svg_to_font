@@ -23,4 +23,4 @@ jobs:
         with:
           accessToken: ${{ secrets.PUB_ACCESS_TOKEN }}
           refreshToken: ${{ secrets.PUB_REFRESH_TOKEN }}
-          node-version: 12
+          skipTests: true
