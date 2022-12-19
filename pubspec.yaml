@@ -1,6 +1,6 @@
 name: svg_to_font
 description: A tool for converting svg files to a font.
-version: 1.0.0
+version: 1.0.1
 repository: https://github.com/camus-design/svg_to_font.git
 
 environment:
