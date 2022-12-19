@@ -1,5 +1,11 @@
 # SvgToFont
 
+![GitHub stars](https://img.shields.io/github/stars/camus-design/svg_to_font?style=social)
+[![Pub Version](https://img.shields.io/pub/v/svg_to_font?label=version&style=flat-square)](https://pub.dev/packages/svg_to_font/changelog)
+![Pub Likes](https://img.shields.io/pub/likes/svg_to_font?label=Pub%20Likes&style=flat-squar)
+![Pub Points](https://img.shields.io/pub/points/svg_to_font?label=Pub%20Points&style=flat-squar)
+[![MIT Licence](https://img.shields.io/github/license/camus-design/svg_to_font?style=flat-square&longCache=true)](https://opensource.org/licenses/mit-license.php)
+
 A tool for converting SVG files to font files.
 
 ## Table of Contents
